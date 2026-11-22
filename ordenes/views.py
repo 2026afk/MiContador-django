@@ -22,11 +22,11 @@ def _usuario_actual(request):
 
 MESES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
          "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
-MESES_GRAFICA = 6  # cuántos meses muestra la gráfica
+MESES_GRAFICA = 6  # cuantos meses muestra la grafica
 
 
 def _ultimos_meses(n):
-    """Lista de (año, mes) de los últimos n meses, el actual al final."""
+    #---Lista de año, mes de los ultimos meses, el actual al final---
     hoy = date.today()
     anio, mes = hoy.year, hoy.month
     meses = []
@@ -40,7 +40,7 @@ def _ultimos_meses(n):
 
 def _datos_grafica(movimientos):
     """Totales mensuales de ingresos y egresos, ya convertidos a coordenadas SVG
-    (viewBox 400x200) para la gráfica del menú."""
+    (viewBox 400x200) para la grafica del menu"""
     meses = _ultimos_meses(MESES_GRAFICA)
     desde = date(meses[0][0], meses[0][1], 1)
 
@@ -133,7 +133,6 @@ def registro_view(request):
 
 
 def menu_inicio(request):
-    """Equivale a MenuInicio.jsp (requiere sesión iniciada)."""
     usuario = _usuario_actual(request)
     if not usuario:
         return redirect("login")
@@ -164,7 +163,7 @@ def menu_inicio(request):
 
 @require_http_methods(["GET", "POST"])
 def agregar_movimiento(request):
-    """Registra un ingreso o egreso en la tabla `movimientos`."""
+    #---Registra un ingreso o egreso en la tabla movimientos---
     usuario = _usuario_actual(request)
     if not usuario:
         return redirect("login")
