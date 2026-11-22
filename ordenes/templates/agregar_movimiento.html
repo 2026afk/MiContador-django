@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Contador - Agregar movimiento</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <div class="caja-registro">
+
+    <a class="volver" href="{% url 'menu_inicio' %}">&larr; Volver</a>
+
+    <h2>Agregar movimiento</h2>
+    <p>Perfil: <strong>{{ nombre }}</strong></p>
+
+    {% if form.errors %}
+      <div class="mensajes">
+        {% for campo, errores in form.errors.items %}
+          {% for e in errores %}<p class="mensaje error">{{ e }}</p>{% endfor %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form action="{% url 'agregar_movimiento' %}" method="POST">
+      {% csrf_token %}
+
+      <label>Tipo de movimiento</label>
+      <div>
+        {% for radio in form.tipo %}
+          <label>{{ radio.tag }} {{ radio.choice_label }}</label>
+        {% endfor %}
+      </div>
+
+      <label for="{{ form.monto.id_for_label }}">Monto</label>
+      {{ form.monto }}
+
+      <label for="{{ form.descripcion.id_for_label }}">Descripción</label>
+      {{ form.descripcion }}
+
+      <label for="{{ form.fecha.id_for_label }}">Fecha y hora</label>
+      {{ form.fecha }}
+
+      <button class="boton" type="submit">Guardar movimiento</button>
+    </form>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #222222;
+  margin: 0;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Título de la marca */
+.marca {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.marca h1 {
+  color: #1e2a5e;
+  margin-bottom: 5px;
+}
+
+.marca p {
+  color: #666666;
+}
+
+/* Tarjetas de perfil (página index) */
+.contenedor-perfiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.tarjeta-perfil {
+  width: 160px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 20px 10px;
+  text-align: center;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.tarjeta-perfil:hover {
+  border-color: #1e2a5e;
+}
+
+.circulo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1e2a5e;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 50px;
+  margin: 0 auto 10px auto;
+}
+
+.circulo.gris {
+  background-color: #999999;
+}
+
+.nombre-perfil {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.tipo-perfil {
+  font-size: 13px;
+  color: #888888;
+}
+
+/* Página de registro */
+.caja-registro {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.volver {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #1e2a5e;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555555;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.boton {
+  display: block;
+  width: 100%;
+  background-color: #1e2a5e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.boton:hover {
+  background-color: #141b42;
+}
+
+/* Página principal */
+.caja-principal {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.encabezado-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cambiar {
+  font-size: 13px;
+  color: #1e2a5e;
+}
+
+.tarjeta {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.saldo {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.positivo {
+  color: green;
+}
+
+.negativo {
+  color: #b84a3e;
+}
+
+/* Lista de transacciones */
+.lista-transacciones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-transacciones li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.lista-transacciones li:first-child {
+  border-top: none;
+}
+
+.tx-detalle p {
+  margin: 0;
+}
+
+.tx-titulo {
+  font-weight: bold;
+}
+
+.tx-categoria {
+  font-size: 12px;
+  color: #999999;
+}
+
+/*---------------ESTILOS PARA LA GRÁFICA--------------*/
+
+/* Contenedor estructural */
+.contenedor-grafica {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Leyenda indicadora de datos */
+.leyenda {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.item-leyenda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.color-verde { color: #10b981; font-weight: bold; }
+.color-rojo { color: #ef4444; font-weight: bold; }
+
+/* El cuadro gris de fondo que aloja la gráfica */
+.area-grafica {
+  background-color: #f9fafb;
+  border-left: 2px solid #9ca3af;
+  border-bottom: 2px solid #9ca3af;
+  padding: 8px;
+  border-radius: 0 0 0 4px;
+}
+
+/* Formato para el trazo de la línea verde */
+.linea-ingresos {
+  stroke: #10b981;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Formato para el trazo de la línea roja */
+.linea-egresos {
+  stroke: #ef4444;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Estilos de los nodos (círculos) */
+.punto-verde { fill: #10b981; }
+.punto-rojo { fill: #ef4444; }
+
+/* Texto de los meses en la parte inferior */
+.eje-x {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 13px;
+}

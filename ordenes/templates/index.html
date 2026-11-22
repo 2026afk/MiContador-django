@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Contador - Login</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <div class="marca">
+    <h1>Mi Contador</h1>
+    <p>¿Quien esta gestionando las finanzas hoy?</p>
+  </div>
+
+  <div class="caja-registro">
+    {% include "mensajes.html" %}
+
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+
+      <label for="nombre">Nombre del perfil</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej: Andres" required>
+
+      <label for="clave">Contraseña</label>
+      <input type="password" id="clave" name="contrasena" placeholder="Minimo 8 caracteres" required>
+
+      <button class="boton" type="submit">Iniciar sesion</button>
+    </form>
+
+    <button class="boton" type="button" onclick="window.location.href='{% url 'registro' %}'">
+      Crear perfil
+    </button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Contador - Crear perfil</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <div class="caja-registro">
+
+    <a class="volver" href="{% url 'login' %}">&larr; Volver</a>
+
+    <h2>Crear perfil</h2>
+
+    {% include "mensajes.html" %}
+
+    <form action="{% url 'registro' %}" method="POST">
+      {% csrf_token %}
+
+      <!-- campo para el nombre -->
+      <label for="nombre">Nombre del perfil</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej: Andrés" required>
+
+      <!-- campo para la contraseña -->
+      <label for="clave">Contraseña</label>
+      <input type="password" id="clave" name="contrasena" placeholder="Mínimo 8 caracteres" minlength="8" required>
+
+      <button class="boton" type="submit">Crear perfil</button>
+    </form>
+
+  </div>
+
+</body>
+</html>
