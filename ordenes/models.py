@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.hashers import check_password, make_password
 from django.db import models
 
-
+#------Crea la tabla usuario-------
 class Usuario(models.Model):
 
     id_usuario = models.AutoField(primary_key=True, db_column="id_usuario")
@@ -23,7 +23,7 @@ class Usuario(models.Model):
     def verificar_contrasena(self, clave_plana):
         return check_password(clave_plana, self.contrasena)
 
-
+#------Crea la tabla movimientos------
 class Movimiento(models.Model):
     
     id_movimiento = models.AutoField(primary_key=True, db_column="id_movimiento")

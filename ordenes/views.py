@@ -12,21 +12,19 @@ from django.views.decorators.http import require_http_methods
 from .forms import MovimientoForm
 from .models import Movimiento, Usuario
 
-
+#------Valida la sesion actual------
 def _usuario_actual(request):
-    """Devuelve el Usuario de la sesión o None."""
     uid = request.session.get("usuario_id")
     if not uid:
         return None
     return Usuario.objects.filter(pk=uid).first()
 
-MESES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
+MESES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", # lista de los meses
          "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
-MESES_GRAFICA = 6  # cuantos meses muestra la grafica
+MESES_GRAFICA = 6  # limite de seis meses
 
-
+#---Lista de los ultimos 6 meses, el actual al final---
 def _ultimos_meses(n):
-    #---Lista de año, mes de los ultimos meses, el actual al final---
     hoy = date.today()
     anio, mes = hoy.year, hoy.month
     meses = []
@@ -37,10 +35,9 @@ def _ultimos_meses(n):
             mes, anio = 12, anio - 1
     return list(reversed(meses))
 
-
+#----------Convierte los datos de la base en coordenadas para la grafica--------
 def _datos_grafica(movimientos):
-    """Totales mensuales de ingresos y egresos, ya convertidos a coordenadas SVG
-    (viewBox 400x200) para la grafica del menu"""
+
     meses = _ultimos_meses(MESES_GRAFICA)
     desde = date(meses[0][0], meses[0][1], 1)
 
@@ -86,9 +83,9 @@ def _datos_grafica(movimientos):
     }
 
 
+#----Gestiona el ingreso-----
 @require_http_methods(["GET", "POST"])
 def login_view(request):
-    """Equivale a index.jsp + loginservlet."""
     if _usuario_actual(request):
         return redirect("menu_inicio")
 
@@ -107,9 +104,9 @@ def login_view(request):
     return render(request, "index.html")
 
 
+#-----Crea una nueva cuenta-----
 @require_http_methods(["GET", "POST"])
 def registro_view(request):
-    """Equivale a registro.jsp + usuarioservlet (accion=NuevaCuenta)."""
     if request.method == "POST":
         nombre = request.POST.get("nombre", "").strip()
         contrasena = request.POST.get("contrasena", "")
@@ -132,6 +129,7 @@ def registro_view(request):
     return render(request, "registro.html")
 
 
+#------Valida el ingreso y prepara el menu de inicio-----
 def menu_inicio(request):
     usuario = _usuario_actual(request)
     if not usuario:
@@ -161,9 +159,9 @@ def menu_inicio(request):
     )
 
 
+#---Registra un ingreso o egreso en la tabla movimientos---
 @require_http_methods(["GET", "POST"])
 def agregar_movimiento(request):
-    #---Registra un ingreso o egreso en la tabla movimientos---
     usuario = _usuario_actual(request)
     if not usuario:
         return redirect("login")
